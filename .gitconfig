@@ -1,0 +1,22 @@
+[user]
+	name = Aaron Bandt
+	email = aaronbandt@gmail.com
+
+[alias]
+  co = checkout
+  ci = commit
+  st = status
+  br = branch
+  hist = log --pretty=format:\"%h %ad | %s%d [%an]\" --graph --date=short
+  type = cat-file -t
+  dump = cat-file -p
+  pull = pull --rebase
+
+[core]
+  ignorecase = false
+	excludesfile = ~/.gitignore
+
+[color]
+  ui = true
+[push]
+  default = matching
