@@ -1,7 +1,7 @@
 export PATH="/Users/abandt/bin:/bin:/usr/openwin/bin:/usr/local/etc:/usr/bin:/usr/sbin:/usr/local/bin:/usr/sbin/:/sbin/:/usr/etc/:/usr/ucb:/usr/ccs/bin:/usr/share/emacs/21.2/lisp/play:/System/Library/Frameworks/JavaVM.framework/Versions/1.6/Home/bin/:/usr/local/git/bin:/usr/local/mysql/bin:$HOME/.rvm/bin:/Users/abandt/Ruby/Gems/1.8/gems/puppet-4.2.3/bin/"
 export MANPATH="/usr/openwin/man:/usr/local/man:/usr/man:/ms/man:/usr/X11R6/man:/usr/local/share/man:/sw/share/man:/usr/share/man:/ms/common/man:/usr/X11/lib/X11/man:/usr/X11/man:/usr/X11/share/man:/usr/X11/share/X11/doc/hardcopy/man"
 export LD_LIBRARY_PATH="/usr/local/lib:/usr/lib:/usr/ucblib"
-export EDITOR=/usr/bin/vim
+export EDITOR=/usr/local/bin/vim
 export GREP_OPTIONS='--color=auto'
 export GEM_HOME=/Users/abandt/Ruby/Gems/1.8/
 export FACTERLIB=/var/lib/puppet/lib/facter
@@ -15,14 +15,13 @@ setopt promptsubst
 unsetopt menucomplete
 
 # Aliases
-alias vi='vim'
+alias vi='/usr/local/bin/vim'
+alias vim='/usr/local/bin/vim'
 alias mv='nocorrect mv'       # no spelling correction on mv
 alias cp='nocorrect cp'       # no spelling correction on cp
 alias mkdir='nocorrect mkdir' # no spelling correction on mkdir
 alias ll='ls -la' 
-# alias ssh='ssh -Y -X'
 alias rssh='ssh -l root $1'
-# alias flushcache="dscacheutil -flushcache"
 alias flushcache="sudo killall -HUP mDNSResponder"
 alias findershow="defaults write com.apple.Finder AppleShowAllFiles YES"
 alias finderhide="defaults write com.apple.Finder AppleShowAllFiles NO"
@@ -30,7 +29,6 @@ alias propset='/usr/bin/svn propset svn:keywords "URL Rev Date Author Id"'
 alias svnexec='/usr/bin/svn propset svn:executable yes'
 alias secrets="ssh -Y fopp-mgt9000.las1.fanops.net"
 alias nvi='sudo vi /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/site_ruby/1.8/nventory.rb'
-# alias gpush='git push origin HEAD:refs/for/master'
 alias gl_delete='git branch -d $1'
 alias gr_delete='git push origin --delete $1'
 alias gpush='git push origin $(git rev-parse --abbrev-ref HEAD 2>/dev/null)'
