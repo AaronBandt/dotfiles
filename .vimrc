@@ -21,6 +21,9 @@ call vundle#end()            " required
 filetype plugin indent on    " required
 
 :let mapleader=","
+" set relativenumber
+" set number
+" :set mouse=a
 
 " syntastic
 set statusline+=%#warningmsg#
@@ -41,7 +44,6 @@ map <Leader>g  :YcmCompleter GoTo<CR>
 :set noerrorbells " no noises
 :set vb t_vb=
 :set paste
-:set number
 
 :set smartindent
 :set tabstop=4
