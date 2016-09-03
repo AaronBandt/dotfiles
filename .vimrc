@@ -20,6 +20,8 @@ Plugin 'vim-scripts/indentpython.vim'
 call vundle#end()            " required
 filetype plugin indent on    " required
 
+:let mapleader=","
+
 " syntastic
 set statusline+=%#warningmsg#
 set statusline+=%{SyntasticStatuslineFlag()}
@@ -29,6 +31,8 @@ let g:syntastic_always_populate_loc_list = 1
 let g:syntastic_auto_loc_list = 1
 let g:syntastic_check_on_open = 1
 let g:syntastic_check_on_wq = 0
+let g:ycm_autoclose_preview_window_after_completion=1
+map <Leader>g  :YcmCompleter GoTo<CR>
 
 :set t_Co=256
 :set showmatch " show matching brackets
