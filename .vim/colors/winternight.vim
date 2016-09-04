@@ -67,6 +67,11 @@ hi Error          ctermfg=LightGray ctermbg=black  guifg=#ff0000 guibg=#232323 g
 " To do: SlateGray3
 hi Todo           ctermfg=LightMagenta ctermbg=black  guifg=#9fb6cd guibg=#232323 gui=none
 
+hi Folded ctermbg=103 ctermfg=232
+hi FoldColumn ctermbg=103 ctermfg=232
+hi SignColumn ctermbg=103 ctermfg=232
+
+
 " Others:  These are "highlight-groups" and "highlight-default" in help section.
 hi Cursor         guifg=#43705a guibg=#e6fff3 gui=none
 hi DiffAdd        guifg=#e6fff3 guibg=#43705a gui=bold

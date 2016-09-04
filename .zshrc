@@ -53,21 +53,8 @@ update_keypass (){
 }
 
 list_node_classes () {
-
-  if [ "$1" == '-q' ] ; then
-     QUIET=true
-     CLASS=$2
-  else
-     QUIET=
-     CLASS=$1
-  fi
-
   for i in $adc ; do
-
-    if [[ ! "$QUIET" = true ]] ; then
-      echo "--- $i"
-    fi
-
+#    echo "--- $i"
     ssh -q root@puppet.${i}.fanops.net "trp-enc list-node-classes $1" 2> /dev/null
   done
 }
@@ -92,6 +79,7 @@ list_class_nodes () {
     if [[ ! "$QUIET" = true ]] ; then
       echo "--- $i"
     fi
+#    ssh -q root@puppet.${i}.fanops.net "trp-enc list-class-nodes $1"
     ssh -q root@puppet.${i}.fanops.net "trp-enc list-class-nodes $CLASS" 2> /dev/null
   done
 }
