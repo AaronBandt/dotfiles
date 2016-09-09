@@ -15,6 +15,8 @@ Plugin 'gmarik/Vundle.vim'
 Bundle 'Valloric/YouCompleteMe'
 Bundle 'scrooloose/syntastic'
 Plugin 'vim-scripts/indentpython.vim'
+Plugin 'SirVer/ultisnips'
+Plugin 'honza/vim-snippets'
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
@@ -24,14 +26,15 @@ filetype plugin indent on    " required
 " set relativenumber
 " set number
 " :set mouse=a
+" :set clipboard=unnamed
 
-" syntastic
+" - syntastic
 set statusline+=%#warningmsg#
 set statusline+=%{SyntasticStatuslineFlag()}
 set statusline+=%*
 let g:syntastic_always_populate_loc_list = 1
 let g:syntastic_auto_loc_list = 1
-let g:syntastic_check_on_open = 1
+let g:syntastic_check_on_open = 0
 let g:syntastic_check_on_wq = 0
 
 function! ToggleErrors()
@@ -47,13 +50,17 @@ nnoremap <silent> <C-e> :<C-u>call ToggleErrors()<CR>
 nnoremap <Leader>n  :lne<CR>
 nnoremap <Leader>p  :lp<CR>
 
-" YouCompleteMe
+" - YouCompleteMe
+
 let g:ycm_autoclose_preview_window_after_completion=1
-let g:ycm_key_list_select_completion = ['<F3>', '<Down>']
-let g:ycm_key_list_previous_completion = ['<S-TAB>', '<Up>']
 
 " go to the def of selected funtion
 map <Leader>g  :YcmCompleter GoTo<CR>
+
+" - ultisnips
+let g:UltiSnipsExpandTrigger="<c-j>"
+let g:UltiSnipsJumpForwardTrigger="<c-b>"
+let g:UltiSnipsJumpBackwardTrigger="<c-z>"
 
 :set t_Co=256
 :set showmatch " show matching brackets
@@ -61,8 +68,6 @@ map <Leader>g  :YcmCompleter GoTo<CR>
 :set incsearch " BUT do highlight as you type you search phrase
 :set noerrorbells " no noises
 :set vb t_vb=
-:set paste
-
 :set smartindent
 :set tabstop=4
 :set shiftwidth=4
@@ -71,6 +76,13 @@ map <Leader>g  :YcmCompleter GoTo<CR>
 set encoding=utf-8
 set foldmethod=indent
 set foldnestmax=2
+
+" Toggle paste
+:set pastetoggle=<F10>
+
+set number
+nnoremap <F9> :set nonumber!<CR>
+
 nnoremap <F2> zA
 nnoremap <space> za
 
