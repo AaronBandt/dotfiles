@@ -23,8 +23,8 @@ call vundle#end()            " required
 filetype plugin indent on    " required
 
 :let mapleader=","
-" set relativenumber
-" set number
+set relativenumber
+set number
 " :set mouse=a
 " :set clipboard=unnamed
 
@@ -81,7 +81,7 @@ set foldnestmax=2
 :set pastetoggle=<F10>
 
 set number
-nnoremap <F9> :set nonumber!<CR>
+nnoremap <F9> :set nonumber!<CR> :set norelativenumber! <CR>
 
 nnoremap <F2> zA
 nnoremap <space> za
