@@ -6,7 +6,7 @@ export GREP_OPTIONS='--color=auto'
 export GEM_HOME=/Users/abandt/Ruby/Gems/1.8/
 export FACTERLIB=/var/lib/puppet/lib/facter
 
-export adc="lab1 las1 las2 las3 sjc1 iad2 ams2 fra1 hkg1"
+export adc="lab1 las1 las2 las3 sjc1 sjc2 iad2 iad3 ams3 fra1 hkg1 inf1"
 
 bindkey -e
 
@@ -35,6 +35,7 @@ alias gpush='git push origin $(git rev-parse --abbrev-ref HEAD 2>/dev/null)'
 alias gpushf='git push origin $(git rev-parse --abbrev-ref HEAD 2>/dev/null) --force'
 alias gpr='git checkout production && git pull --rebase'
 alias gpm='git checkout master && git pull --rebase'
+# alias arsenal="touch ${HOME}/.arsenal_cookie; docker run -it --rm -e USER=${USER} -v ${HOME}/.arsenal_cookie:/root/.arsenal_cookie docker.rp-core.com/rp_arsenal"
 
 
 gbr (){
@@ -44,11 +45,20 @@ gbr (){
 
 }
 
-update_keypass (){
+keypass_pull (){
 
   ssh -q -Y fopp-mgt9000.las1.fanops.net "cd ~/keepassx && git pull --rebase"
-  cd ~/keypass
-  scp fopp-mgt9000.las1.fanops.net:keepassx/*.kdb techops_keypass.kdb
+  pushd ~/keypass
+  scp fopp-mgt9000.las1.fanops.net:keepassx/techops.kdbx .
+  popd
+
+}
+
+keypass_push (){
+
+  ssh -q -Y fopp-mgt9000.las1.fanops.net "cd ~/keepassx && git pull --rebase"
+  scp ~/keypass/techops.kdbx fopp-mgt9000.las1.fanops.net:keepassx/
+  ssh fopp-mgt9000.las1.fanops.net
 
 }
 
@@ -211,3 +221,9 @@ alh () {
   done
 }
 
+
+# PATH="/Users/abandt/perl5/bin${PATH:+:${PATH}}"; export PATH;
+# PERL5LIB="/Users/abandt/perl5/lib/perl5${PERL5LIB:+:${PERL5LIB}}"; export PERL5LIB;
+# PERL_LOCAL_LIB_ROOT="/Users/abandt/perl5${PERL_LOCAL_LIB_ROOT:+:${PERL_LOCAL_LIB_ROOT}}"; export PERL_LOCAL_LIB_ROOT;
+# PERL_MB_OPT="--install_base \"/Users/abandt/perl5\""; export PERL_MB_OPT;
+# PERL_MM_OPT="INSTALL_BASE=/Users/abandt/perl5"; export PERL_MM_OPT;
