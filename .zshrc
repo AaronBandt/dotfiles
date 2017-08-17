@@ -76,6 +76,17 @@ all_puppet () {
   done
 }
 
+puppet_reload () {
+    if [ -z "$1" ] ; then
+        echo "Give an env to run against."
+    else
+        for i in $(arsenal -q nodes search name=fopp-pup.*${1},status=inservice) ; do
+            echo "--- $i"
+            ssh -q -l root $i "service nginx reload"
+        done
+    fi
+}
+
 list_class_nodes () {
   if [ "$1" == '-q' ] ; then
      QUIET=true
