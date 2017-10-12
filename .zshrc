@@ -35,6 +35,7 @@ alias gpush='git push origin $(git rev-parse --abbrev-ref HEAD 2>/dev/null)'
 alias gpushf='git push origin $(git rev-parse --abbrev-ref HEAD 2>/dev/null) --force'
 alias gpr='git checkout production && git pull --rebase'
 alias gpm='git checkout master && git pull --rebase'
+alias arsenal_local='arsenal -c /app/arsenal/conf/arsenal-local.ini -k /Users/abandt/.arsenal_cookie_local --login admin'
 # alias arsenal="touch ${HOME}/.arsenal_cookie; docker run -it --rm -e USER=${USER} -v ${HOME}/.arsenal_cookie:/root/.arsenal_cookie docker.rp-core.com/rp_arsenal"
 
 
