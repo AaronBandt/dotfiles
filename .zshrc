@@ -6,7 +6,7 @@ export GREP_OPTIONS='--color=auto'
 export GEM_HOME=/Users/abandt/Ruby/Gems/1.8/
 export FACTERLIB=/var/lib/puppet/lib/facter
 
-export adc="lab1 las1 las2 las3 sjc1 sjc2 iad2 iad3 ams3 fra1 hkg1 inf1"
+export adc="lab1 las1 las2 las3 sjc2 sjc3 iad2 iad3 iad5 ams3 fra1 hkg1 inf1"
 
 bindkey -e
 
@@ -35,7 +35,7 @@ alias gpush='git push origin $(git rev-parse --abbrev-ref HEAD 2>/dev/null)'
 alias gpushf='git push origin $(git rev-parse --abbrev-ref HEAD 2>/dev/null) --force'
 alias gpr='git checkout production && git pull --rebase'
 alias gpm='git checkout master && git pull --rebase'
-alias arsenal_local='arsenal -c /app/arsenal/conf/arsenal-local.ini -k /Users/abandt/.arsenal_cookie_local --login admin'
+alias arsenal_local='python ~/git/arsenal-client/bin/arsenal -c /app/arsenal/conf/arsenal-local.ini -k /Users/abandt/.arsenal_cookie_local'
 # alias arsenal="touch ${HOME}/.arsenal_cookie; docker run -it --rm -e USER=${USER} -v ${HOME}/.arsenal_cookie:/root/.arsenal_cookie docker.rp-core.com/rp_arsenal"
 
 
@@ -84,6 +84,17 @@ puppet_reload () {
         for i in $(arsenal -q nodes search name=fopp-pup.*${1},status=inservice) ; do
             echo "--- $i"
             ssh -q -l root $i "service nginx reload"
+        done
+    fi
+}
+
+puppet_restart () {
+    if [ -z "$1" ] ; then
+        echo "Give an env to run against."
+    else
+        for i in $(arsenal -q nodes search name=fopp-pup.*${1},status=inservice) ; do
+            echo "--- $i"
+            ssh -q -l root $i "service nginx restart"
         done
     fi
 }
@@ -233,6 +244,10 @@ alh () {
   done
 }
 
+ais () {
+    arg=$1
+    arsenal nodes search name="$arg",status=inservice
+}
 
 # PATH="/Users/abandt/perl5/bin${PATH:+:${PATH}}"; export PATH;
 # PERL5LIB="/Users/abandt/perl5/lib/perl5${PERL5LIB:+:${PERL5LIB}}"; export PERL5LIB;
