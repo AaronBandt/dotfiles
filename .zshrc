@@ -6,7 +6,7 @@ export GREP_OPTIONS='--color=auto'
 export GEM_HOME=/Users/abandt/Ruby/Gems/1.8/
 export FACTERLIB=/var/lib/puppet/lib/facter
 
-export adc="lab1 las1 las2 las3 sjc2 sjc3 iad2 iad3 iad5 ams3 fra1 hkg1 inf1"
+export adc="ams3 fra1 fra2 hkg1 iad2 iad3 iad5 inf1 lab1 las1 las2 las3 sjc2 sjc3"
 
 bindkey -e
 
@@ -36,7 +36,8 @@ alias gpushf='git push origin $(git rev-parse --abbrev-ref HEAD 2>/dev/null) --f
 alias gpr='git checkout production && git pull --rebase'
 alias gpm='git checkout master && git pull --rebase'
 alias arsenal_local='python ~/git/arsenal-client/bin/arsenal -c /app/arsenal/conf/arsenal-local.ini -k /Users/abandt/.arsenal_cookie_local'
-# alias arsenal="touch ${HOME}/.arsenal_cookie; docker run -it --rm -e USER=${USER} -v ${HOME}/.arsenal_cookie:/root/.arsenal_cookie docker.rp-core.com/rp_arsenal"
+alias gc='git pull; git remote prune origin; git branch --merged | grep -v "\*" | xargs -n 1 git branch -d; git gc'
+
 
 
 gbr (){
@@ -63,13 +64,6 @@ keypass_push (){
 
 }
 
-list_node_classes () {
-  for i in $adc ; do
-#    echo "--- $i"
-    ssh -q root@puppet.${i}.fanops.net "trp-enc list-node-classes $1" 2> /dev/null
-  done
-}
-
 all_puppet () {
   for i in $adc ; do
     echo "--- $i"
@@ -94,7 +88,7 @@ puppet_restart () {
     else
         for i in $(arsenal -q nodes search name=fopp-pup.*${1},status=inservice) ; do
             echo "--- $i"
-            ssh -q -l root $i "service nginx restart"
+            ssh -q -l root $i "service puppetserver restart"
         done
     fi
 }
