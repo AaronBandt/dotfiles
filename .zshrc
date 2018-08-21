@@ -6,7 +6,7 @@ export GREP_OPTIONS='--color=auto'
 export GEM_HOME=/Users/abandt/Ruby/Gems/1.8/
 export FACTERLIB=/var/lib/puppet/lib/facter
 
-export adc="ams3 fra1 fra2 hkg1 iad2 iad3 iad5 inf1 lab1 las1 las2 las3 sjc2 sjc3"
+export adc="ams3 fra2 hkg1 iad2 iad3 iad5 inf1 lab1 las1 las2 las3 sjc2 sjc3"
 
 bindkey -e
 
@@ -39,28 +39,15 @@ alias arsenal_local='python ~/git/arsenal-client/bin/arsenal -c /app/arsenal/con
 alias gc='git pull; git remote prune origin; git branch --merged | grep -v "\*" | xargs -n 1 git branch -d; git gc'
 
 
-
 gbr (){
+  if [[ "$1" == 'm' ]] ; then
+      pull_from='master'
+  else
+      pull_from='production'
+  fi
 
   BRANCH=$(git rev-parse --abbrev-ref HEAD 2>/dev/null)
-  git pull origin production --rebase &&  git push origin ${BRANCH} --force
-
-}
-
-keypass_pull (){
-
-  ssh -q -Y fopp-mgt9000.las1.fanops.net "cd ~/keepassx && git pull --rebase"
-  pushd ~/keypass
-  scp fopp-mgt9000.las1.fanops.net:keepassx/techops.kdbx .
-  popd
-
-}
-
-keypass_push (){
-
-  ssh -q -Y fopp-mgt9000.las1.fanops.net "cd ~/keepassx && git pull --rebase"
-  scp ~/keypass/techops.kdbx fopp-mgt9000.las1.fanops.net:keepassx/
-  ssh fopp-mgt9000.las1.fanops.net
+  git pull origin $pull_from --rebase &&  git push origin ${BRANCH} --force
 
 }
 

@@ -1,4 +1,8 @@
 let g:netrw_dirhistmax  =10
-let g:netrw_dirhist_cnt =2
-let g:netrw_dirhist_1='/Users/abandt/git/puppet_legacy/hosts/manifests'
-let g:netrw_dirhist_2='/Users/abandt/git/squirrel/squirrelweb'
+let g:netrw_dirhist_cnt =6
+let g:netrw_dirhist_1='/Users/abandt/git/arsenal/client/arsenalclient/cli'
+let g:netrw_dirhist_2='/cores'
+let g:netrw_dirhist_3='/Users/abandt/git/puppet_core/int_cobbler/manifests/repo_master'
+let g:netrw_dirhist_4='/Users/abandt/git/arsenal/server/arsenalweb/models'
+let g:netrw_dirhist_5='/Users/abandt/git/puppet_core/int_percona'
+let g:netrw_dirhist_6='/Users/abandt/git/puppet_secrets/int_secrets/files/puppet_core/int_jenkins'
